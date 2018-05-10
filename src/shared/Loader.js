@@ -16,7 +16,7 @@ const Loader = (props) => {
 
   return (
     <div className={`${props.className} loader-container`}>
-      {props.isLoading ? loader : this.children}
+      {props.isLoading ? loader : props.children}
     </div>
   );
 };
