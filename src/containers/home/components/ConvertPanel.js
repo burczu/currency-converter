@@ -10,14 +10,15 @@ const ConvertPanel = (props) => {
             isError={props.isError}
             isLoading={props.isLoading}
     >
-      <ConvertForm />
+      <ConvertForm symbols={props.symbols} />
     </Loader>
   );
 };
 
 ConvertPanel.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired
+  isError: PropTypes.bool.isRequired,
+  symbols: PropTypes.object.isRequired
 };
 
 export default ConvertPanel;

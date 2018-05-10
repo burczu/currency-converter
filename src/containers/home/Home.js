@@ -7,7 +7,8 @@ import ConvertPanel from './components/ConvertPanel';
 class Home extends Component {
   static propTypes = {
     convertSymbolsGet: PropTypes.func.isRequired,
-    homeState: PropTypes.object.isRequired
+    homeState: PropTypes.object.isRequired,
+    symbols: PropTypes.array.isRequired
   };
 
   componentDidMount = () => {
@@ -18,6 +19,7 @@ class Home extends Component {
   render = () => {
     const {
       homeState: {
+        availableSymbols,
         availableSymbolsLoading,
         availableSymbolsError
       }
@@ -26,6 +28,7 @@ class Home extends Component {
     return (
       <ConvertPanel isLoading={availableSymbolsLoading}
                     isError={availableSymbolsError}
+                    symbols={availableSymbols}
       />
     );
   };
