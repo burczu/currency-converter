@@ -1,0 +1,45 @@
+@import "../../scss/variables";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  background: $color-lightest;
+  height: $header-height;
+
+  padding: 0 $space-big;
+
+  box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.3);
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    line-height: $header-height;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: row;
+
+    margin: 0;
+    padding: 0;
+    line-height: $header-height;
+    list-style: none;
+  }
+
+  &__link {
+    margin: 0 0 0 $space-medium;
+
+    a {
+      color: $secondary-color;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
