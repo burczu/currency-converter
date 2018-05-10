@@ -16,8 +16,17 @@ class Home extends Component {
   };
 
   render = () => {
+    const {
+      homeState: {
+        availableSymbolsLoading,
+        availableSymbolsError
+      }
+    } = this.props;
+
     return (
-      <ConvertPanel/>
+      <ConvertPanel isLoading={availableSymbolsLoading}
+                    isError={availableSymbolsError}
+      />
     );
   };
 }

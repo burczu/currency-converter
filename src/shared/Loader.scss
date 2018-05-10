@@ -1,0 +1,13 @@
+@import "../../scss/variables";
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__error {
+    color: $color-alert;
+    font-weight: 600;
+    font-size: 1.4em;
+  }
+}
