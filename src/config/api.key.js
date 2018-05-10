@@ -1,1 +1,0 @@
-export const ACCESS_KEY = '41425c1ae48d01c28873480ee96e318a';
