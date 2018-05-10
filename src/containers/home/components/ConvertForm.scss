@@ -1,0 +1,41 @@
+@import "../../../../scss/variables";
+
+.convert-form {
+  &__title {
+    margin-bottom: $space-medium;
+  }
+
+  &__fieldset {
+    label {
+      display: inline-block;
+      margin-bottom: $space-small * .5;
+    }
+    input, select {
+      width: 100%;
+      margin-bottom: $space-small;
+      height: 35px;
+    }
+
+    &:first-child input:last-child {
+      margin-bottom: $space-medium * 0.75;
+    }
+  }
+
+  &__separator {
+    margin-bottom: $space-medium * 0.75;
+    width: 100%;
+
+    img {
+      width: 35px;
+      height: 35px;
+
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &__buttons {
+    margin-top: $space-small;
+    text-align: right;
+  }
+}

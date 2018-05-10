@@ -4,6 +4,8 @@ $secondary-color: #4D5382;
 
 $color-lightest: #fff;
 $color-darkest: #000;
+$color-light: darken($color-lightest, 15%);
+$color-dark: lighten($color-darkest, 15%);
 
 // measures
 $header-height: 80px;
@@ -11,3 +13,5 @@ $header-height: 80px;
 $space-small: 10px;
 $space-medium: 20px;
 $space-big: 40px;
+
+$global-radius: 4px;

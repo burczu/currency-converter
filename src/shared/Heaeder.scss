@@ -17,6 +17,18 @@
     margin: 0;
     padding: 0;
     line-height: $header-height;
+    font-size: 1.8em;
+
+    a {
+      color: $color-darkest;
+      text-decoration: none;
+    }
+
+    img {
+      height: 35px;
+      vertical-align: text-bottom;
+      margin-right: $space-small;
+    }
   }
 
   &__links {
