@@ -3,6 +3,11 @@
 .convert-form {
   &__title {
     margin-bottom: $space-medium;
+    font-size: 1.2em;
+
+    @media screen and (min-width: $screen-xl-size) {
+      font-size: 1.5em;
+    }
   }
 
   &__fieldset {
