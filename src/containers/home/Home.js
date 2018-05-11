@@ -10,7 +10,9 @@ class Home extends Component {
     convertSymbolsGet: PropTypes.func.isRequired,
     changeCurrentCurrency: PropTypes.func.isRequired,
     changeCurrentAmount: PropTypes.func.isRequired,
-    changeWantedCurrency: PropTypes.func.isRequired
+    changeWantedCurrency: PropTypes.func.isRequired,
+    convertCurrency: PropTypes.func.isRequired,
+    clearCurrencyState: PropTypes.func.isRequired
   };
 
   componentDidMount = () => {
@@ -36,21 +38,49 @@ class Home extends Component {
     changeWantedCurrency(value);
   };
 
-  render = () => {
+  onConvertFormSubmit = (event) => {
+    event.preventDefault();
+
+    if (this.isReadyToConvert()) {
+      const { convertCurrency } = this.props;
+      convertCurrency();
+    }
+  };
+
+  onOnceAgainClick = () => {
+    const { clearCurrencyState } = this.props;
+    clearCurrencyState();
+  };
+
+  isReadyToConvert = () => {
     const {
       homeState: {
-        availableSymbols,
-        availableSymbolsLoading,
-        availableSymbolsError,
         currentCurrency,
         currentAmount,
         wantedCurrency
       }
     } = this.props;
 
+    return currentCurrency.length > 0 && currentAmount.length > 0 && wantedCurrency.length > 0;
+  };
+
+  render = () => {
+    const {
+      homeState: {
+        availableSymbols,
+        loading,
+        error,
+        currentCurrency,
+        currentAmount,
+        wantedCurrency,
+        showConvertedValue,
+        convertedValue
+      }
+    } = this.props;
+
     return (
-      <ConvertPanel isLoading={availableSymbolsLoading}
-                    isError={availableSymbolsError}
+      <ConvertPanel isLoading={loading}
+                    isError={error}
                     symbols={availableSymbols}
                     wantedCurrency={wantedCurrency}
                     currentCurrency={currentCurrency}
@@ -58,6 +88,11 @@ class Home extends Component {
                     onCurrentCurrencyChanged={this.onCurrentCurrencyChanged}
                     onCurrentAmountChange={this.onCurrentAmountChange}
                     onWantedCurrencyChange={this.onWantedCurrencyChange}
+                    onConvertFormSubmit={this.onConvertFormSubmit}
+                    readyToConvert={this.isReadyToConvert()}
+                    showConvertedValue={showConvertedValue}
+                    convertResult={convertedValue}
+                    onOnceAgainClick={this.onOnceAgainClick}
       />
     );
   };
@@ -71,7 +106,9 @@ const mapDispatchToProps = (dispatch) => ({
   convertSymbolsGet: () => dispatch(convertActions.convertSymbolsGet()),
   changeCurrentCurrency: (value) => dispatch(convertActions.changeCurrentCurrency(value)),
   changeCurrentAmount: (value) => dispatch(convertActions.changeCurrentAmount(value)),
-  changeWantedCurrency: (value) => dispatch(convertActions.changeWantedCurrency(value))
+  changeWantedCurrency: (value) => dispatch(convertActions.changeWantedCurrency(value)),
+  convertCurrency: () => dispatch(convertActions.convertCurrency()),
+  clearCurrencyState: () => dispatch(convertActions.convertClearState())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

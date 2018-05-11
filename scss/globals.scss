@@ -52,4 +52,16 @@ button {
   font-size: 1em;
   border-radius: $global-radius;
   border: none;
+  transition: background 0.3s;
+
+  &:disabled {
+    background: $color-light;
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 }

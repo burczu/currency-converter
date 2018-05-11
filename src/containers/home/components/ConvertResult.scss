@@ -1,0 +1,12 @@
+@import "../../../../scss/variables.scss";
+
+.convert-result {
+  text-align: center;
+
+  &__result {
+    display: block;
+    font-weight: 600;
+    font-size: 1.4em;
+    margin-bottom: $space-medium;
+  }
+}

@@ -26,3 +26,15 @@ export const changeWantedCurrency = (value) => {
     payload: { value }
   };
 };
+
+export const convertCurrency = () => {
+  return {
+    type: constants.CONVERT_CURRENCY
+  };
+};
+
+export const convertClearState = () => {
+  return {
+    type: constants.CONVERT_CLEAR_STATE
+  }
+};
