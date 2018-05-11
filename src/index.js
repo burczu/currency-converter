@@ -10,8 +10,13 @@ import App from './App';
 import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { loadState, saveState } from './helpers/localStorage';
+import _ from 'lodash';
 
-const store = createStore(reducers, {}, applyMiddleware(logger, createEpicMiddleware(rootEpic)));
+const store = createStore(reducers, loadState(), applyMiddleware(logger, createEpicMiddleware(rootEpic)));
+store.subscribe(_.throttle(() => {
+  saveState(store.getState());
+}, 1000));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -19,4 +24,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
 registerServiceWorker();

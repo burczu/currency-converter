@@ -12,7 +12,7 @@ export const checkCurrencyHistoryRequestEpic = (action$, { getState }) => {
       const state = getState().historyState;
       const { myCurrency, otherCurrency, startDate } = state;
 
-      const url = getHistoryApiUrl(startDate.format('YYYY-MM-DD'));
+      const url = getHistoryApiUrl(startDate);
 
       return ajax.get(`${url}&base=${myCurrency}&symbols=${otherCurrency}`)
         .flatMap((responseData) => {

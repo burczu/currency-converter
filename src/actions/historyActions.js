@@ -1,4 +1,5 @@
 import * as constants from '../constants';
+import moment from 'moment';
 
 export const changeMyCurrency = (value) => {
   return {
@@ -17,14 +18,14 @@ export const changeOtherCurrency = (value) => {
 export const changeStartDate = (date) => {
   return {
     type: constants.HISTORY_START_DATE_CHANGE,
-    payload: { date }
+    payload: { date: moment(date).format('YYYY-MM-DD') }
   };
 };
 
 export const changeEndDate = (date) => {
   return {
     type: constants.HISTORY_END_DATE_CHANGE,
-    payload: { date }
+    payload: { date: moment(date).format('YYYY-MM-DD') }
   }
 };
 

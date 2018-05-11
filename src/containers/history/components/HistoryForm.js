@@ -30,7 +30,7 @@ const HistoryForm = (props) => {
           <div className="history-form__date-picker">
             <DatePicker id="start-date"
                         dateFormat="YYYY-MM-DD"
-                        selected={props.startDate}
+                        selected={props.startDate !== '' ? moment(props.startDate) : undefined}
                         onChange={props.onStartDateChange}
                         placeholderText="Select starting date"
                         maxDate={moment()}
@@ -41,7 +41,7 @@ const HistoryForm = (props) => {
           <div className="history-form__date-picker">
             <DatePicker id="end-date"
                         dateFormat="YYYY-MM-DD"
-                        selected={props.endDate}
+                        selected={props.endDate !== '' ? moment(props.endDate) : undefined}
                         onChange={props.onEndDateChange}
                         placeholderText="Select finishing date"
                         maxDate={moment()}
@@ -61,8 +61,8 @@ HistoryForm.propTypes = {
   symbols: PropTypes.object.isRequired,
   myCurrency: PropTypes.string.isRequired,
   otherCurrency: PropTypes.string.isRequired,
-  startDate: PropTypes.object,
-  endDate: PropTypes.object,
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
   readyToCheck: PropTypes.bool.isRequired,
   onMyCurrencyChange: PropTypes.func.isRequired,
   onOtherCurrencyChange: PropTypes.func.isRequired,

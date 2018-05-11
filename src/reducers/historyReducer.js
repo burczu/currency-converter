@@ -5,8 +5,8 @@ const initialState = {
   error: false,
   myCurrency: 'EUR',
   otherCurrency: '',
-  startDate: undefined,
-  endDate: undefined,
+  startDate: '',
+  endDate: '',
   startDateValue: 0,
   endDateValue: 0,
   showCheckedValue: false
