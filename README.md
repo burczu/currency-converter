@@ -1,4 +1,4 @@
-Currency Converter is a simple web app that allows converting values and check how currencies has changed during the time.
+**Currency Converter** is a simple web app that allows converting values and check how currencies has changed during the time.
 
 ## Initialization
 
