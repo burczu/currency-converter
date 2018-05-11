@@ -11,7 +11,9 @@ class History extends Component {
     symbolsState: PropTypes.object.isRequired,
     historyState: PropTypes.object.isRequired,
     changeMyCurrency: PropTypes.func.isRequired,
-    changeOtherCurrency: PropTypes.func.isRequired
+    changeOtherCurrency: PropTypes.func.isRequired,
+    changeStartDate: PropTypes.func.isRequired,
+    changeEndDate: PropTypes.func.isRequired
   };
 
   componentDidMount = () => {
@@ -34,12 +36,14 @@ class History extends Component {
     changeOtherCurrency(value);
   };
 
-  onStartDateChange = () => {
-
+  onStartDateChange = (date) => {
+    const { changeStartDate } = this.props;
+    changeStartDate(date);
   };
 
-  onEndDateChange = () => {
-
+  onEndDateChange = (date) => {
+    const { changeEndDate } = this.props;
+    changeEndDate(date);
   };
 
   isReadyToCheck = () => {
@@ -97,7 +101,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   symbolsGet: () => dispatch(symbolsActions.symbolsGet()),
   changeMyCurrency: (value) => dispatch(historyActions.changeMyCurrency(value)),
-  changeOtherCurrency: (value) => dispatch(historyActions.changeOtherCurrency(value))
+  changeOtherCurrency: (value) => dispatch(historyActions.changeOtherCurrency(value)),
+  changeStartDate: (date) => dispatch(historyActions.changeStartDate(date)),
+  changeEndDate: (date) => dispatch(historyActions.changeEndDate(date))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);

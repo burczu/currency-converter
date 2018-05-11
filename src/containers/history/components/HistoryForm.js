@@ -31,6 +31,7 @@ const HistoryForm = (props) => {
                         dateFormat="YYYY-MM-DD"
                         selected={props.startDate}
                         onChange={props.onStartDateChange}
+                        placeholderText="Select starting date"
             />
           </div>
 
@@ -40,6 +41,7 @@ const HistoryForm = (props) => {
                         dateFormat="YYYY-MM-DD"
                         selected={props.endDate}
                         onChange={props.onEndDateChange}
+                        placeholderText="Select finishing date"
             />
           </div>
         </fieldset>

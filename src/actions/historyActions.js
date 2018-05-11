@@ -13,3 +13,17 @@ export const changeOtherCurrency = (value) => {
     payload: { value }
   };
 };
+
+export const changeStartDate = (date) => {
+  return {
+    type: constants.HISTORY_START_DATE_CHANGE,
+    payload: { date }
+  };
+};
+
+export const changeEndDate = (date) => {
+  return {
+    type: constants.HISTORY_END_DATE_CHANGE,
+    payload: { date }
+  }
+};
