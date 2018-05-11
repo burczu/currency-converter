@@ -2,7 +2,7 @@
 
 ## Initialization
 
-Before the first use, you need to install node dependencies:
+Before the first use, clone this repository and install node dependencies:
 
 ```
 yarn
