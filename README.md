@@ -81,7 +81,7 @@ To check how the convert rate of two currencies have changed between two dates, 
 
 ## Other information
 
-* this project is based on ejected [create-react-app](https://github.com/facebook/create-react-app) starter kit.
+* this project is based on the ejected [create-react-app](https://github.com/facebook/create-react-app) starter kit.
 * most important parts of it's technology stack:
     * [React](https://reactjs.org/)
     * [Redux](https://redux.js.org/)
