@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import './HistoryForm.scss';
 import SymbolsSelector from '../../../shared/SymbolsSelector';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 const HistoryForm = (props) => {
   return (
     <div className="history-form">
       <h2 className="history-form__title">How currency has changed?</h2>
-      <form>
+      <form onSubmit={props.onCurrencyHistorySubmit}>
         <fieldset className="history-form__fieldset">
           <SymbolsSelector label="My currency"
                            value={props.myCurrency}
@@ -32,6 +33,7 @@ const HistoryForm = (props) => {
                         selected={props.startDate}
                         onChange={props.onStartDateChange}
                         placeholderText="Select starting date"
+                        maxDate={moment()}
             />
           </div>
 
@@ -42,6 +44,7 @@ const HistoryForm = (props) => {
                         selected={props.endDate}
                         onChange={props.onEndDateChange}
                         placeholderText="Select finishing date"
+                        maxDate={moment()}
             />
           </div>
         </fieldset>
@@ -64,7 +67,8 @@ HistoryForm.propTypes = {
   onMyCurrencyChange: PropTypes.func.isRequired,
   onOtherCurrencyChange: PropTypes.func.isRequired,
   onStartDateChange: PropTypes.func.isRequired,
-  onEndDateChange: PropTypes.func.isRequired
+  onEndDateChange: PropTypes.func.isRequired,
+  onCurrencyHistorySubmit: PropTypes.func.isRequired
 };
 
 export default HistoryForm;

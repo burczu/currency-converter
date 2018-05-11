@@ -27,3 +27,9 @@ export const changeEndDate = (date) => {
     payload: { date }
   }
 };
+
+export const checkCurrencyHistoryRequest = () => {
+  return {
+    type: constants.HISTORY_CHECK_FIRST_DATE
+  };
+};

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as symbolsActions from '../../actions/symbolsActions';
 import * as historyActions from '../../actions/historyActions';
 import HistoryPanel from './components/HistoryPanel';
+import numeral from 'numeral';
 
 class History extends Component {
   static propTypes = {
@@ -13,7 +14,8 @@ class History extends Component {
     changeMyCurrency: PropTypes.func.isRequired,
     changeOtherCurrency: PropTypes.func.isRequired,
     changeStartDate: PropTypes.func.isRequired,
-    changeEndDate: PropTypes.func.isRequired
+    changeEndDate: PropTypes.func.isRequired,
+    checkCurrencyHistory: PropTypes.func.isRequired
   };
 
   componentDidMount = () => {
@@ -46,6 +48,19 @@ class History extends Component {
     changeEndDate(date);
   };
 
+  onCurrencyHistorySubmit = (event) => {
+    event.preventDefault();
+
+    if (this.isReadyToCheck()) {
+      const { checkCurrencyHistory } = this.props;
+      checkCurrencyHistory();
+    }
+  };
+
+  onOnceAgainClick = () => {
+
+  };
+
   isReadyToCheck = () => {
     const {
       historyState: {
@@ -68,12 +83,17 @@ class History extends Component {
         myCurrency,
         otherCurrency,
         startDate,
-        endDate
+        endDate,
+        startDateValue,
+        endDateValue,
+        showCheckedValue
       }
     } = this.props;
 
     const loading = this.props.symbolsState.loading || this.props.historyState.loading;
     const error = this.props.symbolsState.error || this.props.historyState.error;
+
+    const currencyDifference = numeral(startDateValue - endDateValue).format('0.00');
 
     return (
       <HistoryPanel symbols={availableSymbols}
@@ -88,6 +108,10 @@ class History extends Component {
                     onOtherCurrencyChange={this.onOtherCurrencyChange}
                     onStartDateChange={this.onStartDateChange}
                     onEndDateChange={this.onEndDateChange}
+                    onCurrencyHistorySubmit={this.onCurrencyHistorySubmit}
+                    currencyDifference={currencyDifference}
+                    onOnceAgainClick={this.onOnceAgainClick}
+                    showResult={showCheckedValue}
       />
     );
   };
@@ -103,7 +127,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeMyCurrency: (value) => dispatch(historyActions.changeMyCurrency(value)),
   changeOtherCurrency: (value) => dispatch(historyActions.changeOtherCurrency(value)),
   changeStartDate: (date) => dispatch(historyActions.changeStartDate(date)),
-  changeEndDate: (date) => dispatch(historyActions.changeEndDate(date))
+  changeEndDate: (date) => dispatch(historyActions.changeEndDate(date)),
+  checkCurrencyHistory: () => dispatch(historyActions.checkCurrencyHistoryRequest())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);

@@ -6,7 +6,10 @@ const initialState = {
   myCurrency: 'EUR',
   otherCurrency: '',
   startDate: undefined,
-  endDate: undefined
+  endDate: undefined,
+  startDateValue: 0,
+  endDateValue: 0,
+  showCheckedValue: false
 };
 
 export default function historyReducer(state = initialState, action) {
@@ -19,6 +22,24 @@ export default function historyReducer(state = initialState, action) {
       return { ...state, startDate: action.payload.date };
     case constants.HISTORY_END_DATE_CHANGE:
       return { ...state, endDate: action.payload.date };
+
+    case constants.HISTORY_CHECK_FIRST_DATE:
+      return { ...state, loading: true, error: false };
+    case constants.HISTORY_CHECK_FIRST_DATE_SUCCESS:
+      return { ...state, startDateValue: action.payload.startDateValue };
+    case constants.HISTORY_CHECK_FIRST_DATE_ERROR:
+      return { ...state, loading: false, error: true };
+
+    case constants.HISTORY_CHECK_SECOND_DATE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        endDateValue: action.payload.endDateValue,
+        showCheckedValue: true
+      };
+    case constants.HISTORY_CHECK_SECOND_DATE_ERROR:
+      return { ...state, loading: false, error: true };
 
     default:
       return state;
