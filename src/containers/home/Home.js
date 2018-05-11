@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as symbolsActions from '../../actions/symbolsActions';
 import * as convertActions from '../../actions/convertActions';
 import ConvertPanel from './components/ConvertPanel';
 
 class Home extends Component {
   static propTypes = {
     homeState: PropTypes.object.isRequired,
-    convertSymbolsGet: PropTypes.func.isRequired,
+    symbolsState: PropTypes.object.isRequired,
+    symbolsGet: PropTypes.func.isRequired,
     changeCurrentCurrency: PropTypes.func.isRequired,
     changeCurrentAmount: PropTypes.func.isRequired,
     changeWantedCurrency: PropTypes.func.isRequired,
@@ -16,10 +18,10 @@ class Home extends Component {
   };
 
   componentDidMount = () => {
-    const { convertSymbolsGet, homeState: { availableSymbolsLoaded } } = this.props;
+    const { symbolsGet, symbolsState: { availableSymbolsLoaded } } = this.props;
 
     if (availableSymbolsLoaded === false) {
-      convertSymbolsGet();
+      symbolsGet();
     }
   };
 
@@ -69,10 +71,10 @@ class Home extends Component {
 
   render = () => {
     const {
+      symbolsState: {
+        availableSymbols
+      },
       homeState: {
-        availableSymbols,
-        loading,
-        error,
         currentCurrency,
         currentAmount,
         wantedCurrency,
@@ -80,6 +82,9 @@ class Home extends Component {
         convertedValue
       }
     } = this.props;
+
+    const loading = this.props.symbolsState.loading || this.props.homeState.loading;
+    const error = this.props.symbolsState.error || this.props.homeState.error;
 
     return (
       <ConvertPanel isLoading={loading}
@@ -102,11 +107,12 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  homeState: state.homeState
+  homeState: state.homeState,
+  symbolsState: state.symbolsState
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  convertSymbolsGet: () => dispatch(convertActions.convertSymbolsGet()),
+  symbolsGet: () => dispatch(symbolsActions.symbolsGet()),
   changeCurrentCurrency: (value) => dispatch(convertActions.changeCurrentCurrency(value)),
   changeCurrentAmount: (value) => dispatch(convertActions.changeCurrentAmount(value)),
   changeWantedCurrency: (value) => dispatch(convertActions.changeWantedCurrency(value)),

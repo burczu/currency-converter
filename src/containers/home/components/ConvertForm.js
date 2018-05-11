@@ -2,20 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ConvertForm.scss';
 import arrowDown from '../../../static/arrow-down.svg';
-import _ from 'lodash';
-
-const getOptions = (symbols, restrict = false) => {
-  const result = [
-    <option disabled value="" key=""> -- select currency -- </option>
-  ];
-
-  _.forOwn(symbols, (value, key) => {
-    const disabled = restrict && key !== 'EUR';
-    result.push(<option disabled={disabled} key={key} value={key}>{`${key} - ${value}`}</option>);
-  });
-
-  return result;
-};
+import SymbolsSelector from '../../../shared/SymbolsSelector';
 
 const ConvertForm = (props) => {
   return (
@@ -23,13 +10,12 @@ const ConvertForm = (props) => {
       <h2 className="convert-form__title">Convert your currency</h2>
       <form onSubmit={props.onConvertFormSubmit}>
         <fieldset className="convert-form__fieldset">
-          <label htmlFor="my-currency">Currency I have:</label>
-          <select id="my-currency"
-                  value={props.currentCurrency}
-                  onChange={props.onCurrentCurrencyChanged}
-          >
-            {getOptions(props.symbols, true)}
-          </select>
+          <SymbolsSelector label="Currency I have:"
+                           symbols={props.symbols}
+                           onChange={props.onCurrentCurrencyChanged}
+                           restricted={true}
+                           value={props.currentCurrency}
+          />
 
           <label htmlFor="my-amount">Amount:</label>
           <input type="currency"
@@ -45,13 +31,12 @@ const ConvertForm = (props) => {
         </div>
 
         <fieldset className="convert-form__fieldset">
-          <label htmlFor="wanted-currency">Currency I want:</label>
-          <select id="wanted-currency"
-                  value={props.wantedCurrency}
-                  onChange={props.onWantedCurrencyChange}
-          >
-            {getOptions(props.symbols)}
-          </select>
+          <SymbolsSelector label="Currency I want:"
+                           value={props.wantedCurrency}
+                           onChange={props.onWantedCurrencyChange}
+                           symbols={props.symbols}
+                           restricted={false}
+          />
         </fieldset>
 
         <fieldset className="convert-form__buttons">

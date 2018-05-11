@@ -1,0 +1,19 @@
+@import "../../../../scss/variables.scss";
+
+.history-panel {
+  width: calc(100% - 20px);
+  max-width: 440px;
+  height: 447px;
+
+  margin: $space-big $space-small;
+  background: $color-lightest;
+
+  padding: $space-medium;
+  border-radius: $global-radius;
+
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.25);
+
+  @media screen and (min-width: $screen-xl-size) {
+    padding: $space-big;
+  }
+}

@@ -19,7 +19,7 @@ const Header = () => {
           </NavLink>
         </li>
         <li className="header__link">
-          <NavLink to="/history-browser">History</NavLink>
+          <NavLink to="/history">History</NavLink>
         </li>
       </ul>
     </nav>

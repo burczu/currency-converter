@@ -9,6 +9,7 @@ import rootEpic from './epics';
 import App from './App';
 import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const store = createStore(reducers, {}, applyMiddleware(logger, createEpicMiddleware(rootEpic)));
 

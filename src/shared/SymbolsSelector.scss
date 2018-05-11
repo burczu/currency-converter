@@ -1,0 +1,12 @@
+@import "../../scss/variables.scss";
+
+.symbols-label {
+  display: inline-block;
+  margin-bottom: $space-small * .5;
+}
+
+.symbols-select {
+  width: 100%;
+  margin-bottom: $space-small;
+  height: 35px;
+}

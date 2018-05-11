@@ -13,7 +13,7 @@ const App = () => {
 
         <main className="main">
           <Route exact path="/" component={Home} />
-          <Route path="/history-browser" component={History} />
+          <Route path="/history" component={History} />
         </main>
       </div>
     </Router>

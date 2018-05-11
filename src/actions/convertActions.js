@@ -1,11 +1,5 @@
 import * as constants from '../constants';
 
-export const convertSymbolsGet = () => {
-  return {
-    type: constants.CONVERT_SYMBOLS_GET
-  };
-};
-
 export const changeCurrentCurrency = (value) => {
   return {
     type: constants.CONVERT_CURRENT_CURRENCY_CHANGE,

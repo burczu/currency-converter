@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/takeUntil';
 
-export const convertSymbolsGet = (action$) => {
-  return action$.ofType(constants.CONVERT_SYMBOLS_GET)
+export const symbolsGetEpic = (action$) => {
+  return action$.ofType(constants.SYMBOLS_GET)
     .mergeMap(() => {
       return ajax.get(symbolsApiUrl)
         .map((responseData) => {
@@ -15,13 +15,13 @@ export const convertSymbolsGet = (action$) => {
 
           if (response.success) {
             return {
-              type: constants.CONVERT_SYMBOLS_GET_SUCCESS,
+              type: constants.SYMBOLS_GET_SUCCESS,
               payload: { symbols: response.symbols }
             };
           }
 
           return {
-            type: constants.CONVERT_SYMBOLS_GET_ERROR
+            type: constants.SYMBOLS_GET_ERROR
           };
         });
     });

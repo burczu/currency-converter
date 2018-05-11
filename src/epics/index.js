@@ -1,10 +1,10 @@
 import { combineEpics } from 'redux-observable';
-import { convertSymbolsGet } from './convertEpics/convertSymbolsGetEpic';
+import { symbolsGetEpic } from './symbolsEpics/symbolsGetEpic';
 import { changeCurrentAmountEpic } from './convertEpics/changeCurrentAmountEpic';
 import { convertCurrencyEpic } from './convertEpics/convertCurrencyEpic';
 
 const rootEpic = combineEpics(
-  convertSymbolsGet,
+  symbolsGetEpic,
   changeCurrentAmountEpic,
   convertCurrencyEpic
 );
