@@ -86,7 +86,7 @@ To check how the convert rate of two currencies have changed between two dates, 
     * [React](https://reactjs.org/)
     * [Redux](https://redux.js.org/)
     * [react-router](https://github.com/ReactTraining/react-router)
-    * [react-observable](https://github.com/redux-observable/redux-observable) (rxjs)
+    * [redux-observable](https://github.com/redux-observable/redux-observable) (rxjs)
     * [Sass](https://sass-lang.com/)
     * [webpack](https://webpack.js.org/)
     * [babel](https://babeljs.io/)
