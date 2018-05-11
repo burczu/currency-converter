@@ -29,6 +29,6 @@ export const convertCurrency = () => {
 
 export const convertClearState = () => {
   return {
-    type: constants.CONVERT_CLEAR_STATE
+    type: constants.CONVERT_STATE_CLEAR
   }
 };

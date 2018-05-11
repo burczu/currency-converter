@@ -32,7 +32,7 @@ export default function convertReducer(state = initialState, action) {
     case constants.CONVERT_CURRENCY_ERROR:
       return { ...state, loading: false, error: true };
 
-    case constants.CONVERT_CLEAR_STATE:
+    case constants.CONVERT_STATE_CLEAR:
       return { ...initialState };
 
     default:
