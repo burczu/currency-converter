@@ -2,6 +2,7 @@ import * as constants from '../constants';
 
 const initialState = {
   availableSymbols: {},
+  availableSymbolsLoaded: false,
   loading: true,
   error: false,
   currentCurrency: 'EUR',
@@ -20,7 +21,8 @@ export default function convertReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: false,
-        availableSymbols: action.payload.symbols
+        availableSymbols: action.payload.symbols,
+        availableSymbolsLoaded: true
       };
     case constants.CONVERT_SYMBOLS_GET_ERROR:
       return { ...state, loading: false, error: true };

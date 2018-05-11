@@ -16,8 +16,11 @@ class Home extends Component {
   };
 
   componentDidMount = () => {
-    const { convertSymbolsGet } = this.props;
-    convertSymbolsGet();
+    const { convertSymbolsGet, homeState: { availableSymbolsLoaded } } = this.props;
+
+    if (availableSymbolsLoaded === false) {
+      convertSymbolsGet();
+    }
   };
 
   onCurrentCurrencyChanged = (event) => {
