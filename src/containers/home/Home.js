@@ -6,9 +6,11 @@ import ConvertPanel from './components/ConvertPanel';
 
 class Home extends Component {
   static propTypes = {
-    convertSymbolsGet: PropTypes.func.isRequired,
     homeState: PropTypes.object.isRequired,
-    symbols: PropTypes.array.isRequired
+    convertSymbolsGet: PropTypes.func.isRequired,
+    changeCurrentCurrency: PropTypes.func.isRequired,
+    changeCurrentAmount: PropTypes.func.isRequired,
+    changeWantedCurrency: PropTypes.func.isRequired
   };
 
   componentDidMount = () => {
@@ -16,12 +18,33 @@ class Home extends Component {
     convertSymbolsGet();
   };
 
+  onCurrentCurrencyChanged = (event) => {
+    const { value } = event.currentTarget;
+    const { changeCurrentCurrency } = this.props;
+    changeCurrentCurrency(value);
+  };
+
+  onCurrentAmountChange = (event) => {
+    const { value } = event.currentTarget;
+    const { changeCurrentAmount } = this.props;
+    changeCurrentAmount(value);
+  };
+
+  onWantedCurrencyChange = (event) => {
+    const { value } = event.currentTarget;
+    const { changeWantedCurrency } = this.props;
+    changeWantedCurrency(value);
+  };
+
   render = () => {
     const {
       homeState: {
         availableSymbols,
         availableSymbolsLoading,
-        availableSymbolsError
+        availableSymbolsError,
+        currentCurrency,
+        currentAmount,
+        wantedCurrency
       }
     } = this.props;
 
@@ -29,6 +52,12 @@ class Home extends Component {
       <ConvertPanel isLoading={availableSymbolsLoading}
                     isError={availableSymbolsError}
                     symbols={availableSymbols}
+                    wantedCurrency={wantedCurrency}
+                    currentCurrency={currentCurrency}
+                    currentAmount={currentAmount}
+                    onCurrentCurrencyChanged={this.onCurrentCurrencyChanged}
+                    onCurrentAmountChange={this.onCurrentAmountChange}
+                    onWantedCurrencyChange={this.onWantedCurrencyChange}
       />
     );
   };
@@ -39,7 +68,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  convertSymbolsGet: () => dispatch(convertActions.convertSymbolsGet())
+  convertSymbolsGet: () => dispatch(convertActions.convertSymbolsGet()),
+  changeCurrentCurrency: (value) => dispatch(convertActions.changeCurrentCurrency(value)),
+  changeCurrentAmount: (value) => dispatch(convertActions.changeCurrentAmount(value)),
+  changeWantedCurrency: (value) => dispatch(convertActions.changeWantedCurrency(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

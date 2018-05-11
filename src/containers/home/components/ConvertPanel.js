@@ -10,7 +10,14 @@ const ConvertPanel = (props) => {
             isError={props.isError}
             isLoading={props.isLoading}
     >
-      <ConvertForm symbols={props.symbols} />
+      <ConvertForm symbols={props.symbols}
+                   currentCurrency={props.currentCurrency}
+                   currentAmount={props.currentAmount}
+                   wantedCurrency={props.wantedCurrency}
+                   onCurrentAmountChange={props.onCurrentAmountChange}
+                   onCurrentCurrencyChanged={props.onCurrentCurrencyChanged}
+                   onWantedCurrencyChange={props.onWantedCurrencyChange}
+      />
     </Loader>
   );
 };
@@ -18,7 +25,13 @@ const ConvertPanel = (props) => {
 ConvertPanel.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
-  symbols: PropTypes.object.isRequired
+  symbols: PropTypes.object.isRequired,
+  currentCurrency: PropTypes.string.isRequired,
+  currentAmount: PropTypes.string.isRequired,
+  wantedCurrency: PropTypes.string.isRequired,
+  onCurrentCurrencyChanged: PropTypes.func.isRequired,
+  onCurrentAmountChange: PropTypes.func.isRequired,
+  onWantedCurrencyChange: PropTypes.func.isRequired
 };
 
 export default ConvertPanel;

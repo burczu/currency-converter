@@ -5,10 +5,12 @@ import arrowDown from '../../../static/arrow-down.svg';
 import _ from 'lodash';
 
 const getOptions = (symbols) => {
-  const result = [];
+  const result = [
+    <option disabled value="" key=""> -- select currency -- </option>
+  ];
 
   _.forOwn(symbols, (value, key) => {
-    result.push(<option key={key}>{`${key} - ${value}`}</option>);
+    result.push(<option key={key} value={key}>{`${key} - ${value}`}</option>);
   });
 
   return result;
@@ -21,12 +23,20 @@ const ConvertForm = (props) => {
       <form>
         <fieldset className="convert-form__fieldset">
           <label htmlFor="my-currency">Currency I have:</label>
-          <select id="my-currency">
+          <select id="my-currency"
+                  value={props.currentCurrency}
+                  onChange={props.onCurrentCurrencyChanged}
+          >
             {getOptions(props.symbols)}
           </select>
 
           <label htmlFor="my-amount">Amount:</label>
-          <input type="currency" id="my-amount" placeholder="How much you want to convert?" />
+          <input type="currency"
+                 id="my-amount"
+                 placeholder="How much you want to convert?"
+                 value={props.currentAmount}
+                 onChange={props.onCurrentAmountChange}
+          />
         </fieldset>
 
         <div className="convert-form__separator">
@@ -35,7 +45,10 @@ const ConvertForm = (props) => {
 
         <fieldset className="convert-form__fieldset">
           <label htmlFor="wanted-currency">Currency I want:</label>
-          <select id="wanted-currency">
+          <select id="wanted-currency"
+                  value={props.wantedCurrency}
+                  onChange={props.onWantedCurrencyChange}
+          >
             {getOptions(props.symbols)}
           </select>
         </fieldset>
@@ -49,7 +62,13 @@ const ConvertForm = (props) => {
 };
 
 ConvertForm.propTypes = {
-  symbols: PropTypes.object.isRequired
+  symbols: PropTypes.object.isRequired,
+  currentCurrency: PropTypes.string.isRequired,
+  currentAmount: PropTypes.string.isRequired,
+  wantedCurrency: PropTypes.string.isRequired,
+  onCurrentCurrencyChanged: PropTypes.func.isRequired,
+  onCurrentAmountChange: PropTypes.func.isRequired,
+  onWantedCurrencyChange: PropTypes.func.isRequired
 };
 
 export default ConvertForm;
