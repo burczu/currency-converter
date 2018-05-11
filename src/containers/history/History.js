@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as symbolsActions from '../../actions/symbolsActions';
+import * as historyActions from '../../actions/historyActions';
 import HistoryPanel from './components/HistoryPanel';
 
 class History extends Component {
   static propTypes = {
     symbolsGet: PropTypes.func.isRequired,
     symbolsState: PropTypes.object.isRequired,
-    historyState: PropTypes.object.isRequired
+    historyState: PropTypes.object.isRequired,
+    changeMyCurrency: PropTypes.func.isRequired,
+    changeOtherCurrency: PropTypes.func.isRequired
   };
 
   componentDidMount = () => {
@@ -17,6 +20,26 @@ class History extends Component {
     if (availableSymbolsLoaded === false) {
       symbolsGet();
     }
+  };
+
+  onMyCurrencyChange = (event) => {
+    const { value } = event.currentTarget;
+    const { changeMyCurrency } = this.props;
+    changeMyCurrency(value);
+  };
+
+  onOtherCurrencyChange = (event) => {
+    const { value } = event.currentTarget;
+    const { changeOtherCurrency } = this.props;
+    changeOtherCurrency(value);
+  };
+
+  onStartDateChange = () => {
+
+  };
+
+  onEndDateChange = () => {
+
   };
 
   isReadyToCheck = () => {
@@ -57,6 +80,10 @@ class History extends Component {
                     startDate={startDate}
                     endDate={endDate}
                     readyToCheck={this.isReadyToCheck()}
+                    onMyCurrencyChange={this.onMyCurrencyChange}
+                    onOtherCurrencyChange={this.onOtherCurrencyChange}
+                    onStartDateChange={this.onStartDateChange}
+                    onEndDateChange={this.onEndDateChange}
       />
     );
   };
@@ -68,7 +95,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  symbolsGet: () => dispatch(symbolsActions.symbolsGet())
+  symbolsGet: () => dispatch(symbolsActions.symbolsGet()),
+  changeMyCurrency: (value) => dispatch(historyActions.changeMyCurrency(value)),
+  changeOtherCurrency: (value) => dispatch(historyActions.changeOtherCurrency(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);

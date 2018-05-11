@@ -16,6 +16,10 @@ const HistoryPanel = (props) => {
                    startDate={props.startDate}
                    endDate={props.endDate}
                    readyToCheck={props.readyToCheck}
+                   onEndDateChange={props.onEndDateChange}
+                   onMyCurrencyChange={props.onMyCurrencyChange}
+                   onOtherCurrencyChange={props.onOtherCurrencyChange}
+                   onStartDateChange={props.onStartDateChange}
       />
     </Loader>
   );
@@ -29,7 +33,11 @@ HistoryPanel.propTypes = {
   otherCurrency: PropTypes.string.isRequired,
   startDate: PropTypes.object,
   endDate: PropTypes.object,
-  readyToCheck: PropTypes.bool.isRequired
+  readyToCheck: PropTypes.bool.isRequired,
+  onMyCurrencyChange: PropTypes.func.isRequired,
+  onOtherCurrencyChange: PropTypes.func.isRequired,
+  onStartDateChange: PropTypes.func.isRequired,
+  onEndDateChange: PropTypes.func.isRequired
 };
 
 export default HistoryPanel;

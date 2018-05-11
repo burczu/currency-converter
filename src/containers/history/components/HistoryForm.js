@@ -12,13 +12,13 @@ const HistoryForm = (props) => {
         <fieldset className="history-form__fieldset">
           <SymbolsSelector label="My currency"
                            value={props.myCurrency}
-                           onChange={() => {}}
+                           onChange={props.onMyCurrencyChange}
                            symbols={props.symbols}
                            restricted={true}
           />
           <SymbolsSelector label="Compared to currency:"
                            value={props.otherCurrency}
-                           onChange={() => {}}
+                           onChange={props.onOtherCurrencyChange}
                            symbols={props.symbols}
                            restricted={false}
           />
@@ -58,7 +58,11 @@ HistoryForm.propTypes = {
   otherCurrency: PropTypes.string.isRequired,
   startDate: PropTypes.object,
   endDate: PropTypes.object,
-  readyToCheck: PropTypes.bool.isRequired
+  readyToCheck: PropTypes.bool.isRequired,
+  onMyCurrencyChange: PropTypes.func.isRequired,
+  onOtherCurrencyChange: PropTypes.func.isRequired,
+  onStartDateChange: PropTypes.func.isRequired,
+  onEndDateChange: PropTypes.func.isRequired
 };
 
 export default HistoryForm;
