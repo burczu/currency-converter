@@ -15,7 +15,8 @@ class History extends Component {
     changeOtherCurrency: PropTypes.func.isRequired,
     changeStartDate: PropTypes.func.isRequired,
     changeEndDate: PropTypes.func.isRequired,
-    checkCurrencyHistory: PropTypes.func.isRequired
+    checkCurrencyHistory: PropTypes.func.isRequired,
+    clearHistoryData: PropTypes.func.isRequired
   };
 
   componentDidMount = () => {
@@ -58,7 +59,8 @@ class History extends Component {
   };
 
   onOnceAgainClick = () => {
-
+    const { clearHistoryData } = this.props;
+    clearHistoryData();
   };
 
   isReadyToCheck = () => {
@@ -128,7 +130,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeOtherCurrency: (value) => dispatch(historyActions.changeOtherCurrency(value)),
   changeStartDate: (date) => dispatch(historyActions.changeStartDate(date)),
   changeEndDate: (date) => dispatch(historyActions.changeEndDate(date)),
-  checkCurrencyHistory: () => dispatch(historyActions.checkCurrencyHistoryRequest())
+  checkCurrencyHistory: () => dispatch(historyActions.checkCurrencyHistoryRequest()),
+  clearHistoryData: () => dispatch(historyActions.clearHistoryData())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);

@@ -33,3 +33,9 @@ export const checkCurrencyHistoryRequest = () => {
     type: constants.HISTORY_CHECK_FIRST_DATE
   };
 };
+
+export const clearHistoryData = () => {
+  return {
+    type: constants.HISTORY_STATE_CLEAR
+  };
+};

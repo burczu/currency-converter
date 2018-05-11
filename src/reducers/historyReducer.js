@@ -41,6 +41,9 @@ export default function historyReducer(state = initialState, action) {
     case constants.HISTORY_CHECK_SECOND_DATE_ERROR:
       return { ...state, loading: false, error: true };
 
+    case constants.HISTORY_STATE_CLEAR:
+      return { ...initialState };
+
     default:
       return state;
   }

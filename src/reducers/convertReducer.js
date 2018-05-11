@@ -33,16 +33,7 @@ export default function convertReducer(state = initialState, action) {
       return { ...state, loading: false, error: true };
 
     case constants.CONVERT_CLEAR_STATE:
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        currentCurrency: 'EUR',
-        currentAmount: '',
-        wantedCurrency: '',
-        convertedValue: '',
-        showConvertedValue: false
-      };
+      return { ...initialState };
 
     default:
       return { ...state };
