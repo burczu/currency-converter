@@ -64,7 +64,7 @@ The app has two features:
 
 To convert the currency, on the home page: 
 
-* select your currency (**unfortunately, for now you can only convert from EURO, which is the only allowed base currency accepted by the fixed.io API for the free subscription plan**)
+* select your currency (**unfortunately, for now you can only convert from EURO, which is the only allowed base currency accepted by the fixed.io API for free subscription plan**)
 * type the amount of money you want to convert
 * select the target currency
 * push enter or click "Convert"
